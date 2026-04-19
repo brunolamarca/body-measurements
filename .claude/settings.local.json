@@ -5,7 +5,15 @@
       "Bash(npm install *)",
       "Bash(npx prisma *)",
       "Bash(npx shadcn@latest init --yes --defaults)",
-      "Bash(npx shadcn@latest add card dialog dropdown-menu form input label popover select separator sheet skeleton tabs textarea toggle tooltip badge avatar alert-dialog)"
+      "Bash(npx shadcn@latest add card dialog dropdown-menu form input label popover select separator sheet skeleton tabs textarea toggle tooltip badge avatar alert-dialog)",
+      "Bash(npx tsc *)",
+      "Bash(node -e \"const z = require\\('zod'\\); console.log\\(z.ZodError.prototype.constructor.name\\); const r = z.object\\({name: z.string\\(\\)}\\).safeParse\\({}\\); console.log\\(JSON.stringify\\(r.error\\)\\)\")",
+      "Bash(node -e \"const {z} = require\\('zod'\\); const r = z.object\\({n: z.string\\(\\)}\\).safeParse\\({}\\); console.log\\(Object.keys\\(r.error\\)\\); console.log\\(r.error.issues[0].message\\)\")",
+      "Bash(npx shadcn@latest add form)",
+      "Bash(npx shadcn@latest add form --overwrite)",
+      "Bash(node -e \"const {z} = require\\('zod'\\); console.log\\(z.ZodError\\); const s = z.number\\({error: 'Invalid number'}\\).optional\\(\\); console.log\\('OK'\\)\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d.get\\('dependencies',{}\\).get\\('prisma','N/A'\\), d.get\\('dependencies',{}\\).get\\('@prisma/client','N/A'\\)\\)\")",
+      "Bash(node -e \"const {PrismaLibSql} = require\\('@prisma/adapter-libsql'\\); console.log\\(PrismaLibSql.toString\\(\\).slice\\(0,200\\)\\)\")"
     ]
   }
 }

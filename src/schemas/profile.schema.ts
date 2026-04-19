@@ -8,7 +8,7 @@ export const profileSchema = z.object({
   birthdate: z.string().optional().nullable(),
   gender: z.enum(["masculino", "feminino", "outro"]).optional().nullable(),
   heightCm: z
-    .number({ invalid_type_error: "Informe um número válido" })
+    .number()
     .min(50, "Altura inválida (mín. 50cm)")
     .max(280, "Altura inválida (máx. 280cm)")
     .optional()

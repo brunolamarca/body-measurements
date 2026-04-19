@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const measurementField = z
-  .number({ invalid_type_error: "Informe um número válido" })
+  .number()
   .positive("Deve ser um valor positivo")
   .max(999, "Valor muito alto")
   .optional()

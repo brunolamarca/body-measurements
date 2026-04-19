@@ -29,7 +29,7 @@ export async function getProfile(id: string) {
 export async function createProfile(formData: unknown): Promise<ActionResult<string>> {
   const parsed = profileSchema.safeParse(formData);
   if (!parsed.success) {
-    return { success: false, error: parsed.error.errors[0].message };
+    return { success: false, error: parsed.error.issues[0].message };
   }
   const { birthdate, ...rest } = parsed.data;
   const profile = await prisma.profile.create({
@@ -48,7 +48,7 @@ export async function updateProfile(
 ): Promise<ActionResult> {
   const parsed = profileSchema.safeParse(formData);
   if (!parsed.success) {
-    return { success: false, error: parsed.error.errors[0].message };
+    return { success: false, error: parsed.error.issues[0].message };
   }
   const { birthdate, ...rest } = parsed.data;
   await prisma.profile.update({

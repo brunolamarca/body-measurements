@@ -32,7 +32,7 @@ export async function createMeasurement(
 ): Promise<ActionResult<string>> {
   const parsed = measurementSchema.safeParse(formData);
   if (!parsed.success) {
-    return { success: false, error: parsed.error.errors[0].message };
+    return { success: false, error: parsed.error.issues[0].message };
   }
   const { date, ...rest } = parsed.data;
   const measurement = await prisma.measurement.create({
@@ -54,7 +54,7 @@ export async function updateMeasurement(
 ): Promise<ActionResult> {
   const parsed = measurementSchema.safeParse(formData);
   if (!parsed.success) {
-    return { success: false, error: parsed.error.errors[0].message };
+    return { success: false, error: parsed.error.issues[0].message };
   }
   const { date, ...rest } = parsed.data;
   await prisma.measurement.update({

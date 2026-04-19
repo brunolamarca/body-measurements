@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import type { Measurement } from "@/generated/prisma";
+import type { Measurement } from "@/generated/prisma/client";
 
 export function measurementsToCsv(measurements: Measurement[], profileName: string): string {
   const headers = [
