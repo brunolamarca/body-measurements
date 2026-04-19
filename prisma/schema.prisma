@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated/prisma"
@@ -10,4 +5,40 @@ generator client {
 
 datasource db {
   provider = "sqlite"
+}
+
+model Profile {
+  id           String        @id @default(cuid())
+  name         String
+  birthdate    DateTime?
+  gender       String?
+  heightCm     Float?
+  avatarColor  String        @default("#3b82f6")
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  measurements Measurement[]
+}
+
+model Measurement {
+  id                String   @id @default(cuid())
+  profileId         String
+  profile           Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  date              DateTime
+  weightKg          Float?
+  waistAboveNavelCm Float?
+  waistNavelCm      Float?
+  rightArmCm        Float?
+  leftArmCm         Float?
+  rightForearmCm    Float?
+  leftForearmCm     Float?
+  glutesCm          Float?
+  rightThighCm      Float?
+  leftThighCm       Float?
+  rightCalfCm       Float?
+  leftCalfCm        Float?
+  notes             String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@index([profileId, date])
 }
