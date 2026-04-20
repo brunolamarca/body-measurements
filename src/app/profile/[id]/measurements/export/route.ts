@@ -18,7 +18,13 @@ export async function GET(
   }
 
   const csv = measurementsToCsv(measurements, profile.name);
-  const filename = `medidas-${profile.name.toLowerCase().replace(/\s+/g, "-")}.csv`;
+  const slug = profile.name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+  const filename = `medidas-${slug}.csv`;
 
   return new NextResponse(csv, {
     headers: {
