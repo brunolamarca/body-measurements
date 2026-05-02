@@ -18,8 +18,8 @@ export default async function ChartsPage({ params }: ChartsPageProps) {
   if (!profile) notFound();
 
   return (
-    <AppShell profileId={id} profileName={profile.name}>
-      <h1 className="text-2xl font-bold mb-1">Gráficos</h1>
+    <AppShell profileId={id} profileName={profile.name} avatarColor={profile.avatarColor}>
+      <h1 className="text-2xl font-extrabold tracking-tight mb-1">Gráficos</h1>
       <p className="text-sm text-muted-foreground mb-6">{profile.name}</p>
       <ChartsClient measurements={measurements} />
     </AppShell>

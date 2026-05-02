@@ -24,10 +24,10 @@ export default async function MeasurementsPage({ params }: MeasurementsPageProps
   if (!profile) notFound();
 
   return (
-    <AppShell profileId={id} profileName={profile.name}>
+    <AppShell profileId={id} profileName={profile.name} avatarColor={profile.avatarColor}>
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <div>
-          <h1 className="text-2xl font-bold">Histórico de medidas</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight">Histórico de medidas</h1>
           <p className="text-sm text-muted-foreground">{profile.name}</p>
         </div>
         <div className="flex gap-2">
@@ -35,7 +35,7 @@ export default async function MeasurementsPage({ params }: MeasurementsPageProps
             <a
               href={`/profile/${id}/measurements/export`}
               download
-              className={cn(buttonVariants({ variant: "outline", size: "sm" }))}
+              className={cn(buttonVariants({ variant: "outline", size: "sm" }), "rounded-xl")}
             >
               <Download className="h-3.5 w-3.5 mr-1" />
               Exportar CSV
@@ -43,7 +43,7 @@ export default async function MeasurementsPage({ params }: MeasurementsPageProps
           )}
           <Link
             href={`/profile/${id}/new`}
-            className={cn(buttonVariants({ size: "sm" }))}
+            className={cn(buttonVariants({ size: "sm" }), "rounded-xl")}
           >
             <PlusCircle className="h-3.5 w-3.5 mr-1" />
             Novo registro
@@ -66,10 +66,10 @@ export default async function MeasurementsPage({ params }: MeasurementsPageProps
       ) : (
         <>
           {/* Desktop table */}
-          <div className="hidden md:block rounded-lg border overflow-x-auto">
+          <div className="hidden md:block rounded-2xl border overflow-x-auto bg-card">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b bg-muted/50">
+                <tr className="border-b bg-muted/40">
                   <th className="text-left px-4 py-3 font-medium">Data</th>
                   <th className="text-right px-3 py-3 font-medium">Peso</th>
                   <th className="text-right px-3 py-3 font-medium">Cin. umbigo</th>
@@ -143,7 +143,7 @@ export default async function MeasurementsPage({ params }: MeasurementsPageProps
             {measurements.map((m: Measurement, i: number) => {
               const prev = measurements[i + 1] as Measurement | undefined;
               return (
-                <div key={m.id} className="border rounded-lg p-4">
+                <div key={m.id} className="border rounded-2xl bg-card p-4 hover:shadow-sm transition-shadow">
                   <div className="flex items-start justify-between mb-3">
                     <div>
                       <p className="font-semibold text-sm">{formatDate(m.date)}</p>

@@ -18,7 +18,7 @@ export default async function NewMeasurementPage({ params }: NewMeasurementPageP
   if (!profile) notFound();
 
   return (
-    <AppShell profileId={id} profileName={profile.name}>
+    <AppShell profileId={id} profileName={profile.name} avatarColor={profile.avatarColor}>
       <div className="max-w-2xl">
         <h1 className="text-2xl font-bold mb-1">Novo registro</h1>
         <p className="text-sm text-muted-foreground mb-6">

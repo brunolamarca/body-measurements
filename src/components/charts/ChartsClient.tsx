@@ -40,7 +40,7 @@ function StatsCard({ label, measurements, metricKey, unit }: StatsCardProps) {
   const max = Math.max(...values);
 
   return (
-    <div className="border rounded-lg p-3 text-sm">
+    <div className="border rounded-2xl bg-card p-4 text-sm hover:shadow-sm transition-shadow">
       <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">{label}</p>
       <p className="text-xl font-bold">
         {last.toFixed(1)} <span className="text-sm font-normal text-muted-foreground">{unit}</span>
@@ -87,9 +87,11 @@ export function ChartsClient({ measurements }: ChartsClientProps) {
   if (measurements.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-24 text-center">
-        <div className="text-5xl mb-4">📊</div>
-        <h3 className="text-xl font-semibold mb-2">Sem dados para exibir</h3>
-        <p className="text-muted-foreground">
+        <div className="w-20 h-20 rounded-2xl gradient-primary flex items-center justify-center mb-6 shadow-lg shadow-primary/25 text-4xl">
+          📊
+        </div>
+        <h3 className="text-2xl font-bold mb-2">Sem dados para exibir</h3>
+        <p className="text-muted-foreground max-w-sm">
           Adicione registros de medidas para ver os gráficos de evolução
         </p>
       </div>
@@ -106,7 +108,7 @@ export function ChartsClient({ measurements }: ChartsClientProps) {
             key={p.label}
             variant={selectedPeriod.label === p.label ? "default" : "outline"}
             size="sm"
-            className="h-7 text-xs px-3"
+            className="h-7 text-xs px-3 rounded-lg"
             onClick={() => setSelectedPeriod(p)}
           >
             {p.label}

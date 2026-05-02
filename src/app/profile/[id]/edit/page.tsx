@@ -15,7 +15,7 @@ export default async function EditProfilePage({ params }: EditProfilePageProps) 
   if (!profile) notFound();
 
   return (
-    <AppShell profileId={id} profileName={profile.name}>
+    <AppShell profileId={id} profileName={profile.name} avatarColor={profile.avatarColor}>
       <Link
         href={`/profile/${id}`}
         className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground mb-6"

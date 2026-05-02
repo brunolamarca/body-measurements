@@ -21,7 +21,7 @@ export default async function EditMeasurementPage({ params }: EditMeasurementPag
   if (!profile || !measurement) notFound();
 
   return (
-    <AppShell profileId={id} profileName={profile.name}>
+    <AppShell profileId={id} profileName={profile.name} avatarColor={profile.avatarColor}>
       <div className="max-w-2xl">
         <div className="flex items-center justify-between mb-6">
           <Link
