@@ -9,7 +9,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npx prisma generate
+RUN DATABASE_URL="file:/tmp/dummy.db" npx prisma generate
 RUN npm run build
 
 # Stage 3: runner (lean image)
