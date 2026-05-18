@@ -23,11 +23,12 @@ COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
 # Copy prisma migrations and generated client
+# (client is generated into src/generated/prisma, not node_modules/.prisma)
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/src/generated ./src/generated
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/@libsql ./node_modules/@libsql
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
+COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 
 # SQLite database lives here — mount a volume at this path
 RUN mkdir -p /app/data
