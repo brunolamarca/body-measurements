@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { notFound } from "next/navigation";
 import { getProfile } from "@/actions/profiles";
 import { getLastMeasurement } from "@/actions/measurements";

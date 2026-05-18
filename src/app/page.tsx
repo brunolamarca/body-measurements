@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import { PlusCircle, UserPlus, Activity } from "lucide-react";
 import { getProfiles } from "@/actions/profiles";
