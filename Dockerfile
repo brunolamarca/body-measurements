@@ -24,13 +24,14 @@ COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
-# Copy prisma migrations, generated client, and config
+# Copy prisma migrations and generated client
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
 COPY --from=builder /app/src/generated ./src/generated
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/@libsql ./node_modules/@libsql
-COPY --from=builder /app/node_modules/dotenv ./node_modules/dotenv
+
+# Plain JS config so prisma migrate deploy finds the datasource URL without TS deps
+RUN printf 'module.exports={schema:"prisma/schema.prisma",migrations:{path:"prisma/migrations"},datasource:{url:process.env.DATABASE_URL}}' > /app/prisma.config.js
 
 # Install prisma CLI globally for migrations
 RUN npm install -g prisma@7.7.0
