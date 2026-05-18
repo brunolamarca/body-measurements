@@ -23,12 +23,14 @@ COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
 # Copy prisma migrations and generated client
-# (client is generated into src/generated/prisma, not node_modules/.prisma)
+# (client output is src/generated/prisma, not node_modules/.prisma)
 COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/src/generated ./src/generated
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/node_modules/@libsql ./node_modules/@libsql
-COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
+
+# Install prisma CLI globally for migrations (avoids transitive dep issues)
+RUN npm install -g prisma@7.7.0
 
 # SQLite database lives here — mount a volume at this path
 RUN mkdir -p /app/data
@@ -39,4 +41,4 @@ ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
 # Run migrations then start
-CMD ["sh", "-c", "node node_modules/prisma/build/index.js migrate deploy && node server.js"]
+CMD ["sh", "-c", "prisma migrate deploy && node server.js"]
